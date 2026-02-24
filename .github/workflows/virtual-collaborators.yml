@@ -1,0 +1,23 @@
+name: Virtual Collaborators
+
+on:
+  issues:
+    types: [opened, edited, closed, reopened]
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, edited, closed, reopened, synchronize]
+  check_run:
+    types: [completed]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  virtual-collaborators:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: heoh/github-virtual-collaborators@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
